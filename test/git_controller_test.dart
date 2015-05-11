@@ -8,10 +8,16 @@ class MockGitController implements GitController {
 }
 
 main() {
-  group('GitController', (){
-    test('does stuff', () {
-      var mockController = new MockGitController();
-      print(mockController.getPrs());
+  group('GitController', () {
+    test('Ensure Remotes', () {
+      var branchNames = new List<String>();
+      branchNames.add('aaronhoffman/merge_conflict_detector');
+      branchNames.add('StoneFinch/merge_conflict_detector');
+
+      var sut = new GitController();
+
+      sut.EnsureAllRemotesExist(
+          '/Users/Aaron/Dev/Test/merge_conflict_detector', branchNames);
     });
   });
 }
